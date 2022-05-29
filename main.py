@@ -1,16 +1,27 @@
-# This is a sample Python script.
+import time
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+from blockade.BlockadeContainer import get_zookeeper_blockade_container
+from blockade.BlockadeEnums import BlockadeVariables, NetworkState, BlockadeAction
+from blockade.BlockadeClientpy import BlockadeController
+from zookeeper.ZookeeperCluster import BlockadeZookeeperCluster
+
+client = BlockadeController("zoopark", "localhost", 5000)
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+def main():
+    zookeeper_blockade_cluster = BlockadeZookeeperCluster(3)
+
+    blockade_containers = [get_zookeeper_blockade_container(server) for server in zookeeper_blockade_cluster.servers]
+
+    client.start_new_blockade(blockade_containers)
+
+    print(client.get_blockade())
+
+    client.new_partition([["zoo3"], ["zoo2", "zoo1"]])
+
+    print(client.get_blockade())
+    client.delete_blockade()
 
 
-# Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    main()
