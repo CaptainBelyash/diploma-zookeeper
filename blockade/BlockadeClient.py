@@ -1,6 +1,6 @@
 import requests
 
-from blockade.BlockadeEnums import BlockadeVariables
+from blockade.BlockadeEnums import BlockadeVariables, BlockadeAction
 
 
 def get_chaos_params(min_start_delay, max_start_delay, min_run_time, max_run_time,
@@ -30,6 +30,10 @@ class BlockadeClient:
         return request.json()
 
     def start_new_blockade(self, containers):
+        self.create_new_blockade(containers)
+        self.execute_action([container[BlockadeVariables.HOSTNAME] for container in containers], BlockadeAction.START)
+
+    def create_new_blockade(self, containers):
         p = {"containers": {
                           container[BlockadeVariables.HOSTNAME]: container for container in containers
                       }}

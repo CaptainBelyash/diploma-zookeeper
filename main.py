@@ -2,10 +2,10 @@ import time
 
 from blockade.BlockadeContainer import get_zookeeper_blockade_container
 from blockade.BlockadeEnums import BlockadeVariables, NetworkState, BlockadeAction
-from blockade.BlockadeClientpy import BlockadeController
+from blockade.BlockadeClient import BlockadeClient
 from zookeeper.ZookeeperCluster import BlockadeZookeeperCluster
 
-client = BlockadeController("zoopark", "localhost", 5000)
+client = BlockadeClient("zoopark", "localhost", 5000)
 
 
 def main():
