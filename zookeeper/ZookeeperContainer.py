@@ -9,6 +9,9 @@ class ZookeeperContainerData:
         self.image = image
         self.servers = []
 
+    def set_container_id(self, container_id):
+        self.container_id = container_id
+
     def add_server(self, server):
         self.servers.append(server)
         return self

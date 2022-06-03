@@ -14,6 +14,14 @@ class NetworkState:
     FLAKY = 'flaky'
 
 
+class ChaosEvent:
+    SLOW = 'SLOW'
+    DUPLICATE = 'DUPLICATE'
+    FLAKY = 'FLAKY'
+    STOP = 'STOP'
+    PARTITION = 'PARTITION'
+
+
 class BlockadeVariables:
     IMAGE = "image"
     HOSTNAME = "hostname"

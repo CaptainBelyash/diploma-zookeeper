@@ -10,7 +10,8 @@ def get_zookeeper_blockade_container(server: ZookeeperContainer):
         BlockadeVariables.ENVIRONMENT: {
             ZkEnvVar.ZOO_MY_ID: f"{server.server_id}",
             ZkEnvVar.ZOO_SERVERS: server.get_cluster_servers_variable(),
-            ZkEnvVar.ZOO_4LW_COMMANDS_WHITELIST: "srvr, mntr, stat, ruok, conf, isro"
+            ZkEnvVar.ZOO_4LW_COMMANDS_WHITELIST: "conf, cons, crst, dump, envi, ruok, wchp, "
+                                                 "srst, srvr, stat, wchs, wchc, dirs, mntr"
         }
     }
 
